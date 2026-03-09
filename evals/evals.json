@@ -179,6 +179,81 @@
         {"name": "has-annotations", "description": "Design decision annotations on screen slides"},
         {"name": "has-slide-structure", "description": "Title slide, screen slides, summary slide"}
       ]
+    },
+    {
+      "id": 12,
+      "name": "figma-responsive-variants",
+      "prompt": "/figma-responsive Generate mobile (375×812) and tablet (768×1024) variants from the desktop hero frame",
+      "expected_output": "Two new Figma frames cloned and adapted from the desktop source with layout reflowed for smaller breakpoints",
+      "files": [],
+      "assertions": [
+        {"name": "creates-mobile-frame", "description": "Mobile frame created at 375×812"},
+        {"name": "creates-tablet-frame", "description": "Tablet frame created at 768×1024"},
+        {"name": "preserves-source", "description": "Original desktop frame is unchanged"},
+        {"name": "adapts-layout", "description": "Multi-column grids reflowed for smaller widths"},
+        {"name": "proper-naming", "description": "Frames named with / Mobile and / Tablet suffixes"},
+        {"name": "validated-with-screenshot", "description": "Screenshots taken of all breakpoints"}
+      ]
+    },
+    {
+      "id": 13,
+      "name": "figma-sync-check",
+      "prompt": "/figma-sync Compare the current Figma file's tokens against the project's CSS variables and report drift",
+      "expected_output": "Sync report with percentage score, categorized drift (colors, typography, spacing, components), and patch suggestions",
+      "files": [],
+      "assertions": [
+        {"name": "extracts-figma-tokens", "description": "Paint styles and text styles extracted from Figma"},
+        {"name": "extracts-code-tokens", "description": "CSS variables or Tailwind config parsed from code"},
+        {"name": "compares-colors", "description": "Color values compared with match/mismatch/missing status"},
+        {"name": "has-sync-score", "description": "Overall sync percentage calculated"},
+        {"name": "has-patch-suggestions", "description": "Concrete code or Figma patches suggested"},
+        {"name": "identifies-direction", "description": "Asks which is source of truth before patching"}
+      ]
+    },
+    {
+      "id": 14,
+      "name": "figma-prototype-flow",
+      "prompt": "/figma-prototype Auto-connect the screens in the current file into a linear flow with slide transitions",
+      "expected_output": "Prototype connections created between screens with appropriate transitions and a flow starting point set",
+      "files": [],
+      "assertions": [
+        {"name": "scans-screens", "description": "All top-level frames identified as screens"},
+        {"name": "identifies-interactive-elements", "description": "Buttons, links, and CTAs found in each screen"},
+        {"name": "creates-connections", "description": "Prototype reactions added to interactive elements"},
+        {"name": "uses-transitions", "description": "Slide-in transitions applied with appropriate direction"},
+        {"name": "sets-starting-point", "description": "Flow starting point set on first screen"},
+        {"name": "generates-report", "description": "Connection summary table generated"}
+      ]
+    },
+    {
+      "id": 15,
+      "name": "site-to-figma-capture",
+      "prompt": "/site-to-figma https://example.com Capture the above-fold layout and recreate it in Figma with extracted styles",
+      "expected_output": "Figma page created with recreated layout sections, extracted paint/text styles, and reference screenshot",
+      "files": [],
+      "assertions": [
+        {"name": "captures-screenshot", "description": "Website screenshot captured via Playwright"},
+        {"name": "extracts-styles", "description": "Colors and typography extracted from computed styles"},
+        {"name": "creates-figma-page", "description": "New Figma page created for the capture"},
+        {"name": "recreates-sections", "description": "Major layout sections recreated as Figma frames"},
+        {"name": "creates-paint-styles", "description": "Extracted colors saved as Figma paint styles"},
+        {"name": "creates-text-styles", "description": "Extracted typography saved as Figma text styles"}
+      ]
+    },
+    {
+      "id": 16,
+      "name": "component-docs-generation",
+      "prompt": "/component-docs Generate documentation for all component sets in the current Figma file",
+      "expected_output": "Markdown documentation with prop tables, variant grids, specs, usage guidelines, and code examples for each component",
+      "files": [],
+      "assertions": [
+        {"name": "lists-all-components", "description": "All component sets discovered and documented"},
+        {"name": "has-prop-tables", "description": "Property tables with type, default, and options"},
+        {"name": "has-variant-grid", "description": "Visual grid showing variant combinations"},
+        {"name": "has-dimension-specs", "description": "Width, height, padding, and radius documented"},
+        {"name": "has-usage-guidelines", "description": "Do/Don't guidelines included"},
+        {"name": "has-code-examples", "description": "HTML/React code snippets generated"}
+      ]
     }
   ]
 }

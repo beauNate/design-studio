@@ -246,3 +246,11 @@ figma_capture_screenshot(varCId)     → C — Copy
 3. **Hypothesis first** — every variant needs a clear hypothesis for what it tests and why
 4. **Respect brand** — variants should stay within brand guidelines even while testing
 5. **Prioritize high-impact areas** — CTAs and headlines have more impact than footer layouts
+
+## What's Next
+
+After generating A/B variants:
+- `/figma-prototype` — add prototype connections to each variant for testing
+- `/design-present` — create a presentation comparing variants for stakeholders
+- `/ux-audit` — audit each variant for accessibility and usability compliance
+- `/design-sprint` — run a full design sprint if the test results suggest pivoting

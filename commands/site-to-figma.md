@@ -308,3 +308,11 @@ Compare structure:
 - **Interactions**: Does not capture hover states or animations — static layout only
 - **Complex layouts**: Grid-heavy or absolutely-positioned layouts may not auto-layout perfectly
 - **Authentication**: Cannot capture pages behind login walls unless user is logged in
+
+## What's Next
+
+After capturing a site into Figma:
+- `/figma-create` — refine the captured layout, add missing details
+- `/figma-responsive` — generate mobile/tablet variants from the captured desktop frame
+- `/design-system` — extract design tokens from the captured styles
+- `/ab-variants` — create A/B test variants from the captured screen

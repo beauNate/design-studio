@@ -9,6 +9,21 @@ description: >
   design system creation, responsive layouts, dark mode theming, accessibility audits, UX flows,
   wireframes, content strategy, animations, or deployment. Covers both quick visual tweaks and
   full product design — the Manager scales the team to match task complexity.
+
+  <example>
+  user: "Build me a landing page for a SaaS product"
+  assistant: Activates UI Designer, Content Designer, Motion Designer, Design System Lead
+  </example>
+
+  <example>
+  user: "Convert this Figma design to code"
+  assistant: Routes to /figma command with Figma Workflow reference
+  </example>
+
+  <example>
+  user: "Create wireframes in Figma for a task manager"
+  assistant: Routes to /figma-create with UX Designer + Figma Creator
+  </example>
 ---
 
 # Design Team Skill
@@ -67,15 +82,34 @@ This skill is part of the **design-studio** plugin. For focused workflows, use t
 |----------|---------|-----------|
 | **Figma Workflow** | Design-to-code, Figma MCP tools, Code Connect | `references/figma-workflow.md` |
 | **Figma Creator** | Create designs in Figma — pages, components, styles, wireframes | `references/figma-creation.md` |
-| **Design Critique** | Automated UX heuristic review of Figma screens | `agents/design-critique.md` |
-| **Design Lint** | Scan Figma files for inconsistencies, orphan colors, non-standard spacing | `agents/design-lint.md` |
 | **Deployment** | Preview server, Firebase Hosting, optimization | `references/deployment.md` |
+
+### Specialist Agents
+
+| Agent | Purpose | When to delegate | Reference |
+|-------|---------|-----------------|-----------|
+| **Accessibility Auditor** | WCAG AA compliance audit with specific code fixes | After building any user-facing UI, or when user asks about accessibility | `agents/accessibility-auditor.md` |
+| **Design QA** | Visual QA at 3 breakpoints, token compliance, interaction states | After building pages/components, to verify production quality | `agents/design-qa.md` |
+| **Figma Creator** | Build pages, frames, components, styles in Figma via Desktop Bridge | When the task requires creating designs inside Figma | `agents/figma-creator.md` |
+| **Design Critique** | UX heuristic review — Nielsen's 10, visual audit, interaction states | When user wants design feedback, or before presenting designs | `agents/design-critique.md` |
+| **Design Lint** | Scan Figma files for orphan colors, non-standard spacing, low contrast | When auditing Figma file quality, or before handoff | `agents/design-lint.md` |
 
 ---
 
 ## Design Manager: Task Orchestration
 
 You are the Design Manager. For every design task, follow this process:
+
+### Step 0 — Load User Settings
+
+Read `${CLAUDE_PLUGIN_ROOT}/skills/design/settings.local.md` if it exists. Extract any configured preferences:
+- **Brand defaults**: `brand_color`, `accent_color`, `brand_name`, `brand_mood`
+- **Framework preferences**: `css_framework`, `js_framework`, `icon_library`, `default_font`
+- **Figma preferences**: `figma_file_key`, `default_frame_width/height`, `wireframe_fidelity`, `auto_screenshot`
+- **Output preferences**: `output_format`, `token_format`, `include_dark_mode`, `deploy_target`
+- **Quality settings**: `min_contrast_ratio`, `spacing_base`, `max_roles`
+
+Settings marked `"auto"` or `""` defer to auto-detection. Apply any set values as defaults for the task.
 
 ### Step 1 — Analyze the Task
 

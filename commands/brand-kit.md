@@ -299,3 +299,11 @@ This gives grays a subtle warm/cool cast matching the brand.
 - Test contrast ratios: primary-500 on white, primary-500 on primary-50, text on backgrounds
 - If the primary color is very saturated, desaturate the extended palette slightly for usability
 - Component tokens reference color/spacing tokens — never hardcode values
+
+## What's Next
+
+After generating a brand kit:
+- `/design` — build pages and components using the new brand tokens
+- `/figma-create` — create a Figma design system with the brand's styles and variables
+- `/design-system` — extend the token system with component-level tokens
+- `/design-present` — create a brand presentation to share with stakeholders

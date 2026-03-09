@@ -1,7 +1,7 @@
 ---
 description: "Review an existing design for quality — accessibility, usability, visual consistency, content, and motion."
 argument-hint: "[file path, URL, or 'current preview']"
-allowed-tools: ["Read", "Bash", "Glob", "Grep", "mcp__*"]
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "mcp__*"]
 ---
 
 # /design-review
@@ -80,3 +80,10 @@ Present findings as:
 - What the design does right
 
 For each issue, provide the specific code change needed to fix it.
+
+## What's Next
+
+After a design review, suggest follow-up actions based on findings:
+- `/design` — redesign specific areas that scored poorly
+- `/design-system` — create tokens if the review found hardcoded values
+- `/figma-sync` — check if Figma designs match the reviewed code

@@ -276,3 +276,11 @@ If the user doesn't specify, default to **Markdown + CSS variables** as the most
 - Always include visual references (screenshots) alongside measurements
 - Token names should follow the pattern used in the Figma file's style naming
 - If the design system has variables with modes (Light/Dark), document both modes
+
+## What's Next
+
+After generating handoff docs:
+- `/figma-sync` — monitor design-code drift over time
+- `/component-docs` — generate detailed component API documentation
+- `/figma` — implement the design in code using the handoff specs
+- `/design-system` — extract reusable tokens for the codebase

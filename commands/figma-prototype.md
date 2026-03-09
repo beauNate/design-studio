@@ -256,3 +256,11 @@ figma_execute: `
 - **Back action**: Use `navigation: 'BACK'` for generic "go back" without specifying a destination.
 - **Flow starting points**: A page can have multiple flow starting points for different user journeys.
 - **Connection limit**: Keep individual screens to <10 connections to maintain clarity.
+
+## What's Next
+
+After creating prototype connections:
+- `/design-present` — build a presentation to walk stakeholders through the flow
+- `/ux-audit` — audit the prototype flow against the design brief
+- `/figma-responsive` — add mobile/tablet variants to the prototyped screens
+- `/design-sprint` — run a design sprint to validate the prototype with users

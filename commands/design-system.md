@@ -74,3 +74,11 @@ Trigger: User asks for components, component library, or variants
 Always output tokens as CSS custom properties. Include a usage example showing how to apply them.
 
 **MCP Fallback**: If Figma MCP tools are unavailable for Mode B, ask the user to export their Figma variables as JSON or provide screenshots of their design tokens. If Preview MCP is unavailable, write files directly and instruct the user to open them locally.
+
+## What's Next
+
+After generating a design system:
+- `/brand-kit` — generate a complete brand kit with visual reference page
+- `/design` — build a page using the new token system
+- `/figma-create` — create the design system as Figma styles and variables
+- `/figma-sync` — keep code tokens in sync with Figma over time

@@ -231,3 +231,10 @@ Also offer:
 - If images are too large (>5MB total), use external URLs from Figma REST API instead
 - Speaker notes are hidden by default, shown only in presenter view
 - The presentation adapts to the dominant color palette from the Figma file
+
+## What's Next
+
+After creating a presentation:
+- `/design-review` — audit the presentation for accessibility and quality
+- `/design` — build any additional screens or components discussed during review
+- `/figma-create` — update Figma designs based on stakeholder feedback

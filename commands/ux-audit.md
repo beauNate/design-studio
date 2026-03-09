@@ -1,7 +1,7 @@
 ---
 description: "Audit a Figma file against a design brief — checks page structure, frame naming, sizes, styles, components, and content compliance."
 argument-hint: "[brief text or 'check current file']"
-allowed-tools: ["Read", "Bash", "Glob", "Grep", "mcp__*"]
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "mcp__*"]
 ---
 
 # /ux-audit
@@ -211,3 +211,11 @@ Final score = (PASS count) / (Total requirements) × 100
 - Take screenshots using `figma_capture_screenshot` for current-state validation
 - If a requirement is ambiguous, note both your interpretation and the result
 - Keep the report factual — report what IS vs what SHOULD BE, without editorializing
+
+## What's Next
+
+After auditing a Figma file:
+- `/figma-create` — fix missing or non-compliant elements directly in Figma
+- `/design-review` — run a deeper quality audit (accessibility, usability, content)
+- `/design-handoff` — generate developer handoff docs once the design passes audit
+- `/figma-sync` — check if code implementation matches the audited design

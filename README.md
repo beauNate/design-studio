@@ -15,7 +15,7 @@
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://claude.ai/claude-code)
 [![Roles](https://img.shields.io/badge/Specialist_Roles-10-orange)]()
 [![Commands](https://img.shields.io/badge/Slash_Commands-16-green)]()
-[![Design Knowledge](https://img.shields.io/badge/Design_Knowledge-7500%2B_lines-ff69b4)]()
+[![Design Knowledge](https://img.shields.io/badge/Design_Knowledge-8000%2B_lines-ff69b4)]()
 
 **Instead of generic AI design help, Design Studio assembles the right specialists for each task — just like a real design studio would staff a project.**
 
@@ -301,6 +301,57 @@ Phases: Understand (problem mapping) → Diverge (8 solution ideas) → Decide (
 
 ---
 
+## Workflows
+
+Commands chain together. Each command suggests relevant next steps:
+
+```
+Design from scratch:
+  /design → /design-review → /design-system → /figma-create
+
+Figma-native workflow:
+  /figma-create → /ux-audit → /figma-prototype → /figma-responsive
+
+Design-to-code pipeline:
+  /figma → /design-review → /figma-sync
+
+Brand setup:
+  /brand-kit → /figma-create → /design-handoff
+
+Stakeholder review:
+  /figma-create → /design-present → /ab-variants
+
+Full product sprint:
+  /design-sprint → /figma-create → /figma-prototype → /design-present
+```
+
+---
+
+## Configuration
+
+Create `skills/design/settings.local.md` (gitignored) to set defaults:
+
+```yaml
+brand_color: "#6366f1"
+accent_color: "#f59e0b"
+brand_name: "MyProduct"
+brand_mood: "professional"
+
+css_framework: "tailwind"
+default_font: "Inter"
+icon_library: "lucide"
+
+include_dark_mode: true
+min_contrast_ratio: 4.5
+spacing_base: 8
+
+deploy_target: "firebase"
+```
+
+Settings marked `"auto"` or left empty defer to auto-detection. The Design Manager reads these at the start of every task.
+
+---
+
 ## Agents
 
 | Agent | What It Does | Runs In |
@@ -361,11 +412,16 @@ The plugin automatically detects your project context at session start:
 
 | Detects | How |
 |---------|-----|
-| CSS Framework | Tailwind config, Bootstrap in package.json |
-| JS Framework | React, Vue, Svelte, Next.js |
-| Design Tokens | `.tokens.json`, `tokens.css`, CSS custom properties |
-| Figma | `.figmarc`, Code Connect config |
+| CSS Framework | Tailwind, PostCSS, Bootstrap |
+| JS Framework | React, Vue, Svelte, Next.js, Nuxt, Angular, Astro, Remix, SolidJS |
+| TypeScript | `tsconfig.json` |
+| Build Tool | Vite, Webpack, Turborepo |
+| CSS-in-JS | styled-components, Emotion, vanilla-extract |
+| Component Library | Radix UI, Chakra, MUI, Mantine, shadcn/ui |
+| Design Tokens | `.tokens.json`, `tokens.css`, Style Dictionary |
+| Figma | `.figmarc`, Code Connect files |
 | Deployment | `firebase.json` |
+| Documentation | `.storybook/` directory |
 
 Recommendations adapt to match your stack — no manual configuration needed.
 
@@ -413,16 +469,16 @@ design-studio/
 │   ├── figma-creator.md              # Figma-native creation
 │   ├── design-critique.md            # UX heuristic review
 │   └── design-lint.md                # Design file linting
-├── hooks/hooks.json                    # SessionStart auto-detection
+├── hooks/hooks.json                    # SessionStart + PreToolUse + Stop hooks
 ├── scripts/
 │   ├── detect-design-context.sh        # Project stack detection
 │   └── generate-tokens.sh             # CSS token template generator
-├── evals/evals.json                    # 12 test cases with assertions
+├── evals/evals.json                    # 17 test cases with assertions
 └── CONTRIBUTING.md                    # Contributor guide
 ```
 
 <details>
-<summary><b>Design knowledge breakdown (7,500+ lines)</b></summary>
+<summary><b>Design knowledge breakdown (8,000+ lines)</b></summary>
 
 | File | Lines | Covers |
 |------|-------|--------|
@@ -435,7 +491,7 @@ design-studio/
 | **brand-kit.md** | **301** | **HSL shade generation, secondary color derivation, type scale, spacing scale, CSS/Tailwind/JSON/Figma outputs** |
 | **figma-responsive.md** | **298** | **Responsive variant generation, layout analysis, breakpoint adaptation, grid reflow, sidebar collapse** |
 | **design-handoff.md** | **278** | **Developer handoff docs, token maps, spacing specs, component APIs, CSS/Tailwind/TypeScript exports** |
-| SKILL.md | 265 | Design Manager orchestration, team assembly, workflow phases, output formats |
+| SKILL.md | 300 | Design Manager orchestration, team assembly, workflow phases, output formats |
 | **design-critique.md** | **263** | **UX heuristic review, Nielsen's 10 heuristics, visual audit, interaction states, critique reporting** |
 | **component-docs.md** | **262** | **Auto-generated Storybook-style docs, prop tables, variant grids, usage guidelines, code examples** |
 | **figma-prototype.md** | **258** | **Prototype connections, interactive element detection, transition presets, flow specification** |
@@ -446,11 +502,15 @@ design-studio/
 | ux-designer.md | 239 | User flows, IA, wireframing, interaction design, usability |
 | **design-present.md** | **233** | **Interactive HTML presentations, keyboard nav, annotations, walkthrough/pitch/case-study types** |
 | content-designer.md | 229 | Microcopy, error formulas, empty states, tone, number formatting |
-| ux-audit.md | 213 | Figma file compliance auditing, brief parsing, structural/style/component checks |
+| ux-audit.md | 219 | Figma file compliance auditing, brief parsing, structural/style/component checks |
 | ux-researcher.md | 207 | Nielsen's heuristics, WCAG AA checklist, mental models, edge cases |
 | deployment.md | 198 | Preview server, Firebase Hosting, image/CSS/font optimization |
-| figma-create.md | 142 | Create designs in Figma command — pages, wireframes, components, design systems |
+| figma-create.md | 150 | Create designs in Figma command — pages, wireframes, components, design systems |
 | figma-creator.md | 142 | Figma creation specialist agent — layout building, component creation, validation |
+| design.md (command) | 107 | Full design workflow — team assembly, creative direction, implementation, quality review |
+| figma.md (command) | 108 | Figma-to-code workflow — analysis, layout mapping, comparison, refinement |
+| design-review.md (cmd) | 89 | 5-point quality audit — accessibility, usability, visual, content, motion |
+| design-system.md (cmd) | 84 | Token generation, extraction, auditing — CSS variables, Tailwind, JSON |
 | product-designer.md | 140 | Feature scoping, user outcomes, business alignment, design patterns |
 | design-qa.md | 127 | Visual QA at 3 breakpoints, token compliance, interaction states |
 | accessibility-auditor.md | 105 | WCAG AA compliance, color contrast, semantic HTML, keyboard nav |

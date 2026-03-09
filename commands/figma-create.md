@@ -140,3 +140,12 @@ Fix issues found in screenshots. Common problems to look for:
 - **Font loading**: Must call `figma.loadFontAsync()` before setting `fontName`, `fontSize`, or `characters` on text nodes
 - **Auto-layout positioning**: When `layoutMode` is set, children ignore `x`/`y` — use `layoutMode = 'NONE'` for free positioning
 - **Dynamic page access**: Always use async node getters (`getNodeByIdAsync`, `getLocalPaintStylesAsync`, etc.)
+
+## What's Next
+
+After creating designs in Figma:
+- `/ux-audit` — audit the created file against the original brief
+- `/design-handoff` — generate developer handoff docs from the new designs
+- `/figma-prototype` — add interactive prototype connections between screens
+- `/figma-responsive` — generate mobile/tablet variants from desktop frames
+- `/component-docs` — auto-generate documentation for created components

@@ -296,3 +296,11 @@ Summarize what was created:
 - **Font loading** — always `await figma.loadFontAsync()` before any text property changes
 - **Iteration budget** — max 3 fix iterations per breakpoint, then report remaining issues
 - **Design system consistency** — use the same token-linked styles on responsive variants (don't break style references)
+
+## What's Next
+
+After generating responsive variants:
+- `/figma-prototype` — add prototype connections between breakpoint variants
+- `/ux-audit` — audit all breakpoints against the design brief
+- `/design-handoff` — generate handoff docs including responsive specs
+- `/figma` — implement the responsive design in code

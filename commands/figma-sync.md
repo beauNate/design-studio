@@ -250,3 +250,11 @@ figma_execute: `
 - **Tolerance** — color comparisons use a delta threshold (hex values within ±2 per channel are considered "close enough" but flagged as "near match")
 - **Direction** — always ask which is the source of truth (Figma or code) before applying patches
 - **Non-destructive** — never auto-apply patches without user confirmation
+
+## What's Next
+
+After a sync check:
+- `/design-handoff` — regenerate handoff docs if drift was found and fixed
+- `/design-system` — update code tokens to match Figma (if Figma is source of truth)
+- `/figma-create` — update Figma styles to match code (if code is source of truth)
+- `/design-review` — audit the code implementation for quality

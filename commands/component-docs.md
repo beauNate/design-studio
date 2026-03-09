@@ -260,3 +260,11 @@ preview_screenshot → capture proof
 - **Usage guidelines**: Infer Do/Don't from the variant structure (e.g., if there's a "Danger" type, add a guideline about destructive actions)
 - **Code examples**: Adapt to detected framework (React/Vue/Svelte/HTML)
 - **Screenshots**: Prefer `figma_capture_screenshot` (current state) over REST API (cloud state)
+
+## What's Next
+
+After generating component docs:
+- `/design-handoff` — generate full developer handoff including component docs
+- `/figma-sync` — check if code components match the documented Figma components
+- `/design-review` — audit component implementations for quality
+- `/design-present` — create a component library walkthrough presentation

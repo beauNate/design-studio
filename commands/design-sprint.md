@@ -325,3 +325,11 @@ At the end of the sprint, deliver:
 - **Diverge before converging** — Phase 2 should generate genuinely different ideas, not variations of the same idea.
 - **One sprint, one question** — keep the scope tight. Multiple questions = multiple sprints.
 - **Real decisions** — the decision matrix should produce a clear winner. If it's a tie, the user breaks it.
+
+## What's Next
+
+After completing a design sprint:
+- `/design` — build the production design from the validated prototype
+- `/figma-create` — create hi-fi Figma screens from the sprint's winning solution
+- `/figma-prototype` — add interactive connections to the prototype
+- `/design-present` — present sprint findings and recommendations to stakeholders
