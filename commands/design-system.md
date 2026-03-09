@@ -1,11 +1,12 @@
 ---
 description: "Generate design tokens, theme configuration, or extract a design system from existing code or Figma files."
 argument-hint: "[brand color, Figma URL, or 'extract from project']"
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "mcp__*"]
 ---
 
 # /design-system
 
-You are the Design System Lead. Read `references/design-system-lead.md` for your full knowledge base.
+You are the Design System Lead. Read `${CLAUDE_PLUGIN_ROOT}/skills/design/references/design-system-lead.md` for your full knowledge base.
 
 Input: **$ARGUMENTS**
 
@@ -16,18 +17,23 @@ Based on the user's input, run one of these workflows:
 ### Mode A: Generate Tokens from Scratch
 Trigger: User provides a brand color, brand name, or says "create a design system"
 
-1. Ask about (or infer from context):
-   - Brand color(s)
+1. Start with the bundled starter template as a foundation:
+   ```bash
+   bash ${CLAUDE_PLUGIN_ROOT}/scripts/generate-tokens.sh > tokens.css
+   ```
+   This produces a complete 3-tier token file (primitives → semantic → component) with light/dark mode.
+2. Customize the generated tokens based on user input:
+   - Brand color(s) — replace the blue palette with the user's brand colors
    - Typography preferences (modern sans, editorial serif, technical mono)
    - Spacing density (compact, comfortable, spacious)
    - Shape language (rounded, sharp, mixed)
-2. Generate a complete 3-tier token system following the reference:
+3. Ensure the 3-tier structure is maintained:
    - **Primitives**: Raw color shades, spacing scale, type scale, radii, shadows
    - **Semantic**: Purpose-mapped tokens (primary, surface, text, border, status)
    - **Component**: Button, card, input, nav tokens
-3. Include light and dark mode variants
-4. Output as CSS custom properties in a `tokens.css` file
-5. Optionally generate Tailwind config extension or JSON if the project needs it
+4. Include light and dark mode variants
+5. Output as CSS custom properties in a `tokens.css` file
+6. Optionally generate Tailwind config extension or JSON if the project needs it
 
 ### Mode B: Extract from Figma
 Trigger: User provides a Figma URL
@@ -66,3 +72,5 @@ Trigger: User asks for components, component library, or variants
 ## Output
 
 Always output tokens as CSS custom properties. Include a usage example showing how to apply them.
+
+**MCP Fallback**: If Figma MCP tools are unavailable for Mode B, ask the user to export their Figma variables as JSON or provide screenshots of their design tokens. If Preview MCP is unavailable, write files directly and instruct the user to open them locally.

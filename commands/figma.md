@@ -1,11 +1,14 @@
 ---
 description: "Convert a Figma design to production code. Provide a Figma URL or select a node in Figma desktop."
 argument-hint: "[Figma URL]"
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "mcp__*"]
 ---
 
 # /figma
 
-You are running the Figma-to-code workflow. Read `references/figma-workflow.md` for the complete guide.
+You are running the Figma-to-code workflow. Read `${CLAUDE_PLUGIN_ROOT}/skills/design/references/figma-workflow.md` for the complete guide.
+
+**MCP Fallback**: This command works best with Figma MCP tools (`get_design_context`, `get_screenshot`, `get_code_connect_map`). If Figma MCP is unavailable, ask the user to paste design details, provide a screenshot, or export design specs manually. If Preview MCP is unavailable, write the HTML file and instruct the user to open it in a browser for comparison.
 
 Input: **$ARGUMENTS**
 

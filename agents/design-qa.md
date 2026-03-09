@@ -31,7 +31,7 @@ description: |
   </example>
 model: inherit
 color: cyan
-tools: ["Read", "Grep", "Glob", "Bash"]
+tools: ["Read", "Write", "Grep", "Glob", "Bash"]
 ---
 
 You are a design QA specialist. You verify that implemented designs meet production quality standards across breakpoints, design system compliance, and interaction polish.

@@ -1,17 +1,14 @@
 ---
 name: design
 description: >
-  A virtual design team skill that operates like a full professional design studio. When triggered,
-  a Design Manager analyzes the task and assembles the right specialists: Product Designer (end-to-end UX),
-  UX Designer (flows, wireframes), UI Designer (visual polish), UX Researcher (user insights),
-  Content Designer (microcopy), Design System Lead (consistency), Motion Designer (animation),
-  and a Creative Director (vision). Use this skill whenever the user asks to build, design, create,
-  prototype, or style anything visual — web pages, apps, components, layouts, logos, posters, slides,
-  dashboards, charts, design tokens, brand assets, marketing materials, or any creative output.
-  Also trigger when the user mentions Figma files, design-to-code, responsive design, dark mode,
-  theming, UX flows, wireframes, user research, content strategy, animations, or deployment.
-  Even casual requests like "make it look good", "build me a page", or "design something for X"
-  should activate this skill. If design thinking would improve the output, this skill applies.
+  Assembles a virtual design team to produce production-quality UI, UX, and visual output. A Design
+  Manager staffs the right specialists (Product Designer, UX Designer, UI Designer, UX Researcher,
+  Content Designer, Design System Lead, Motion Designer, Creative Director) based on the task scope.
+  Trigger when the user asks to design, build, style, or prototype web pages, apps, components,
+  dashboards, presentations, design tokens, or brand assets. Also trigger for Figma-to-code workflows,
+  design system creation, responsive layouts, dark mode theming, accessibility audits, UX flows,
+  wireframes, content strategy, animations, or deployment. Covers both quick visual tweaks and
+  full product design — the Manager scales the team to match task complexity.
 ---
 
 # Design Team Skill
@@ -105,11 +102,12 @@ Based on the task, activate only the roles needed. Read their reference files fo
 
 **Rules:**
 - Simple visual tasks (icon, color tweak) → 1–2 roles, no overhead
-- Standard tasks (page, component) → 2–4 roles
-- Complex tasks (product feature, redesign) → 4–7 roles, full process
+- Standard tasks (page, component) → 2–4 roles (default cap: 4 roles to keep context focused)
+- Complex tasks (product feature, redesign) → 4–7 roles, full process (only expand beyond 4 when truly needed)
 - The **UI Designer** is activated for nearly every visual task
 - The **Design System Lead** joins whenever consistency matters (multi-component work)
 - The **Content Designer** joins whenever there's user-facing text
+- When in doubt, start lean (fewer roles) — you can always pull in additional specialists mid-task if needed
 
 ### Step 4 — Execute the Workflow
 

@@ -31,7 +31,7 @@ description: |
   </example>
 model: inherit
 color: yellow
-tools: ["Read", "Grep", "Glob", "Bash"]
+tools: ["Read", "Write", "Grep", "Glob", "Bash"]
 ---
 
 You are an accessibility specialist. Your sole focus is WCAG AA compliance auditing.
