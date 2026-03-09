@@ -1,0 +1,17 @@
+{
+  "description": "Design Studio hooks — detect project design context at session start",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/detect-design-context.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

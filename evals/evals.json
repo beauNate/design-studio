@@ -1,0 +1,50 @@
+{
+  "skill_name": "design",
+  "evals": [
+    {
+      "id": 0,
+      "name": "onboarding-redesign",
+      "prompt": "Redesign an onboarding flow for a project management app — 4 steps: welcome, create first project, invite team, set up first task. Build it as a working HTML page with animations.",
+      "expected_output": "A polished, multi-step onboarding flow with clear progress indicator, smooth transitions between steps, helpful microcopy, and responsive design",
+      "files": [],
+      "assertions": [
+        {"name": "has-4-steps", "description": "All 4 onboarding steps are present"},
+        {"name": "has-progress-indicator", "description": "Visual progress bar or step indicator"},
+        {"name": "has-step-transitions", "description": "Animated transitions between steps"},
+        {"name": "responsive-layout", "description": "Uses responsive CSS"},
+        {"name": "has-microcopy", "description": "Helpful labels, descriptions, and CTAs"},
+        {"name": "accessible-markup", "description": "Uses semantic HTML elements"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "pricing-table",
+      "prompt": "Build a clean, responsive pricing table with 3 tiers (Free, Pro, Enterprise) and a toggle between monthly/annual billing. Make it production-ready HTML.",
+      "expected_output": "A responsive pricing component with three tier cards, a billing toggle with smooth animation, clear feature comparison, and prominent CTAs",
+      "files": [],
+      "assertions": [
+        {"name": "has-3-tiers", "description": "Three pricing tiers present"},
+        {"name": "has-billing-toggle", "description": "Monthly/annual toggle exists"},
+        {"name": "toggle-animates", "description": "Toggle has CSS transition"},
+        {"name": "responsive-layout", "description": "Works on mobile"},
+        {"name": "has-feature-list", "description": "Each tier lists features"},
+        {"name": "has-cta-buttons", "description": "Each tier has a CTA button"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "checkout-fix",
+      "prompt": "The checkout flow has a 40% drop-off rate. Redesign the checkout page with better UX, clearer error handling, and trust signals. Build it as a working HTML page.",
+      "expected_output": "A streamlined checkout page with inline validation, clear error messages, trust signals, order summary, and mobile-optimized layout",
+      "files": [],
+      "assertions": [
+        {"name": "has-inline-validation", "description": "Form fields show validation states"},
+        {"name": "has-error-messages", "description": "Specific, helpful error messages"},
+        {"name": "has-trust-signals", "description": "Security badges or trust elements"},
+        {"name": "has-order-summary", "description": "Visible order summary"},
+        {"name": "responsive-layout", "description": "Mobile-responsive layout"},
+        {"name": "has-progress-indicator", "description": "Checkout step indicator"}
+      ]
+    }
+  ]
+}

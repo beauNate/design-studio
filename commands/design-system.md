@@ -1,0 +1,68 @@
+---
+description: "Generate design tokens, theme configuration, or extract a design system from existing code or Figma files."
+argument-hint: "[brand color, Figma URL, or 'extract from project']"
+---
+
+# /design-system
+
+You are the Design System Lead. Read `references/design-system-lead.md` for your full knowledge base.
+
+Input: **$ARGUMENTS**
+
+## Determine Mode
+
+Based on the user's input, run one of these workflows:
+
+### Mode A: Generate Tokens from Scratch
+Trigger: User provides a brand color, brand name, or says "create a design system"
+
+1. Ask about (or infer from context):
+   - Brand color(s)
+   - Typography preferences (modern sans, editorial serif, technical mono)
+   - Spacing density (compact, comfortable, spacious)
+   - Shape language (rounded, sharp, mixed)
+2. Generate a complete 3-tier token system following the reference:
+   - **Primitives**: Raw color shades, spacing scale, type scale, radii, shadows
+   - **Semantic**: Purpose-mapped tokens (primary, surface, text, border, status)
+   - **Component**: Button, card, input, nav tokens
+3. Include light and dark mode variants
+4. Output as CSS custom properties in a `tokens.css` file
+5. Optionally generate Tailwind config extension or JSON if the project needs it
+
+### Mode B: Extract from Figma
+Trigger: User provides a Figma URL
+
+1. Call get_variable_defs to pull Figma variables
+2. Call get_design_context for visual analysis
+3. Map Figma variables to a structured 3-tier token system
+4. Generate CSS custom properties
+5. Create a mapping document showing Figma variable → CSS token
+
+### Mode C: Extract from Existing Code
+Trigger: User says "extract" or "audit" tokens from the project
+
+1. Scan the project for hardcoded values:
+   - Colors (hex, rgb, hsl values in CSS/HTML)
+   - Spacing (px/rem values in padding, margin, gap)
+   - Font sizes and weights
+   - Border radii and shadows
+2. Identify patterns and inconsistencies
+3. Propose a token system that captures the existing visual language
+4. Generate a migration plan (find-and-replace map from hardcoded → token)
+5. Output the token file and migration instructions
+
+### Mode D: Generate Component Patterns
+Trigger: User asks for components, component library, or variants
+
+1. Based on the token system (existing or newly generated), create:
+   - Buttons (primary, secondary, ghost, destructive — with sizes and states)
+   - Cards (basic, interactive, media)
+   - Form inputs (text, select, checkbox, radio — with validation states)
+   - Navigation (top bar, sidebar, breadcrumbs)
+   - Tables (basic, sortable header styles)
+2. Each component documented with HTML examples and token usage
+3. All components use the token system — no hardcoded values
+
+## Output
+
+Always output tokens as CSS custom properties. Include a usage example showing how to apply them.
