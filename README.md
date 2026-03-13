@@ -196,7 +196,7 @@ _The skill loads only the references your task actually needs_
 | Command | What It Does |
 |---------|-------------|
 | `/design <task>` | Full design workflow with team assembly |
-| `/design-review <file>` | 5-point quality audit (accessibility, usability, visual, content, motion) |
+| `/design-review <file or screenshot>` | Quality audit — accepts HTML, Figma URLs, or screenshots for visual AI critique (6 design principles scored 0–10) |
 | `/design-system` | Generate, extract, or audit design tokens |
 | `/figma <URL>` | Convert Figma designs to production code |
 | `/figma-create <task>` | Build pages, wireframes, components in Figma |

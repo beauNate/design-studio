@@ -2,6 +2,21 @@
 
 All notable changes to Design Studio are documented here.
 
+## [3.1.0] — 2026-03-13
+
+AI Design Critique with Screenshots — enhances `/design-review` with visual analysis mode.
+
+### Changed
+
+- **`/design-review` command enhanced**: Now accepts screenshots (`.png`, `.jpg`, `.gif`, `.webp`) and Figma URLs as input for visual AI critique. Two modes:
+  - **Visual AI Critique Mode** (Section A): Scores the design against 6 visual principles — Visual Hierarchy, Alignment & Grid, Color & Contrast, Typography, Proximity & Grouping, Balance & Composition — each scored 0–10 with explicit rubrics. Detects 7 common anti-patterns (wall of text, button soup, icon ambiguity, etc.). Produces per-principle score table.
+  - **Code-Level Audit** (Section B): Existing 5-audit code analysis (accessibility, usability heuristics, visual consistency, content, motion) — unchanged.
+  - **Dual Mode**: When both a visual and code source are available (preview server), runs both and merges findings into unified report.
+- plugin.json version bumped to 3.1.0
+- SKILL.md: `/design-review` description updated to mention screenshot/visual AI critique support
+
+---
+
 ## [3.0.0] — 2026-03-13
 
 Figma Component Library Generator — adds `/figma-component-library` command.

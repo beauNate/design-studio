@@ -83,7 +83,7 @@ This skill is part of the **design-studio** plugin. For focused workflows, use t
 | Command | Use when |
 |---------|----------|
 | `/design <task>` | Full design workflow with team assembly |
-| `/design-review <file>` | Audit an existing design for quality |
+| `/design-review <file or screenshot>` | Audit an existing design — accepts HTML files, Figma URLs, screenshots (visual AI critique), or preview servers |
 | `/design-system` | Generate or extract design tokens |
 | `/figma <URL>` | Convert a Figma design to production code |
 | `/figma-create <task>` | Create designs directly in Figma (pages, components, styles) |
