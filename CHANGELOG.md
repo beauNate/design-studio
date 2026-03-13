@@ -2,6 +2,33 @@
 
 All notable changes to Design Studio are documented here.
 
+## [2.6.0] — 2026-03-13
+
+Eval expansion — grows from 20 to 32 eval cases covering new commands and cross-command workflows.
+
+### Added
+
+- **12 new eval cases** (ids 20–31):
+  - `design-framework-react-tailwind` (id 20) — TypeScript interfaces, Tailwind classes, component decomposition
+  - `design-framework-nextjs-app-router` (id 21) — Server/Client component split, async data fetching
+  - `email-template-welcome` (id 22) — Inline styles, table layout, VML buttons, preheader, responsive
+  - `email-campaign-onboarding` (id 23) — 5-email sequence, subject lines, timing, ESP notes, A/B plan
+  - `design-template-landing-page` (id 24) — CSS variables, hero, features, responsive, dark mode
+  - `design-template-dashboard` (id 25) — Sidebar, KPI cards, chart area, data table, dark-tech style
+  - `edge-case-dark-mode` (id 26) — prefers-color-scheme, contrast in both modes, interactive states
+  - `edge-case-rtl-layout` (id 27) — CSS logical properties, dir="rtl" support, directional icons
+  - `edge-case-reduced-motion` (id 28) — prefers-reduced-motion, animation disable, layout preservation
+  - `workflow-design-to-framework` (id 29) — `/design` → `/design-framework` pipeline test
+  - `workflow-brand-to-component-docs` (id 30) — `/brand-kit` → `/design` → `/design-review` pipeline
+  - `workflow-email-social-launch` (id 31) — `/email-campaign` → `/social-campaign` coordination
+
+### Changed
+
+- Total eval count: 20 → 32
+- plugin.json version bumped to 2.6.0
+
+---
+
 ## [2.5.0] — 2026-03-13
 
 Template Gallery — adds `/design-template` command and Template Gallery reference.

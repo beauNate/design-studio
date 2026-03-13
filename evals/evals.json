@@ -300,6 +300,186 @@
         {"name": "has-recommendations", "description": "At least 3 actionable insights or optimization recommendations"},
         {"name": "is-interactive", "description": "Dashboard has functional filters, toggles, or hover states"}
       ]
+    },
+    {
+      "id": 20,
+      "name": "design-framework-react-tailwind",
+      "prompt": "/design-framework react-tailwind — Convert this landing page HTML to React + Tailwind components: a hero section with headline, subtext, and CTA button, plus a 3-column features grid",
+      "expected_output": "TypeScript React components with Tailwind classes, proper interface types, cn() utility, and component decomposition into Hero and FeatureGrid",
+      "files": [],
+      "assertions": [
+        {"name": "has-typescript-interfaces", "description": "Props typed with TypeScript interface or type definitions"},
+        {"name": "uses-tailwind-classes", "description": "Layout uses Tailwind utility classes, not inline styles or custom CSS"},
+        {"name": "has-component-decomposition", "description": "Split into multiple components (e.g., Hero, FeatureCard, FeatureGrid)"},
+        {"name": "has-cn-utility", "description": "Uses cn() or clsx() for conditional class merging"},
+        {"name": "has-default-exports", "description": "Each component has a proper export"},
+        {"name": "no-inline-styles", "description": "No style={{}} attributes — uses Tailwind classes instead"}
+      ]
+    },
+    {
+      "id": 21,
+      "name": "design-framework-nextjs-app-router",
+      "prompt": "/design-framework nextjs — Convert this dashboard page HTML to Next.js App Router. The page has a static sidebar nav and a data table that fetches from an API endpoint.",
+      "expected_output": "Next.js App Router components with correct Server/Client component split — sidebar as Server Component, data table as Client Component with 'use client'",
+      "files": [],
+      "assertions": [
+        {"name": "has-server-component", "description": "Sidebar or static sections are Server Components (no 'use client')"},
+        {"name": "has-client-directive", "description": "Interactive components have 'use client' directive at top of file"},
+        {"name": "has-async-data-fetch", "description": "Server component uses async/await for data fetching, not useEffect"},
+        {"name": "has-typescript", "description": "Components use TypeScript with proper return type annotations"},
+        {"name": "has-layout-structure", "description": "Uses layout.tsx and page.tsx pattern correctly"},
+        {"name": "has-component-separation", "description": "Server and Client components are in separate files"}
+      ]
+    },
+    {
+      "id": 22,
+      "name": "email-template-welcome",
+      "prompt": "/email-template welcome for Horizon SaaS — new user just signed up, first email with quick win offer",
+      "expected_output": "Production-ready HTML email with inline styles, table layout, VML bulletproof button, preheader, mobile responsive @media rules, and welcome sequence copy",
+      "files": [],
+      "assertions": [
+        {"name": "has-inline-styles", "description": "All rendering-critical styles are inline (not CSS-only)"},
+        {"name": "has-table-layout", "description": "Layout uses table elements (not flexbox or grid)"},
+        {"name": "has-vml-button", "description": "CTA button has VML for Outlook and HTML fallback wrapped in conditional comments"},
+        {"name": "has-preheader", "description": "Hidden preheader div with &zwnj;&nbsp; padding present"},
+        {"name": "has-mobile-media-query", "description": "@media screen and (max-width: 600px) responsive rules in <style>"},
+        {"name": "has-unsubscribe-link", "description": "Unsubscribe link present in footer with template variable"}
+      ]
+    },
+    {
+      "id": 23,
+      "name": "email-campaign-onboarding",
+      "prompt": "/email-campaign onboarding for DesignFlow — 5-email sequence for free trial users, goal is trial-to-paid conversion within 14 days",
+      "expected_output": "Campaign brief with sequence map, copy for all 5 emails (subject, preview, body, CTA), full HTML for each email, ESP automation notes, A/B test plan",
+      "files": [],
+      "assertions": [
+        {"name": "has-5-emails", "description": "Exactly 5 emails in the sequence with distinct purposes"},
+        {"name": "has-subject-lines", "description": "Subject line and preview text written for each email"},
+        {"name": "has-sequence-timing", "description": "Day/delay between each email specified (e.g., Day 0, Day 2, Day 5)"},
+        {"name": "has-single-cta-per-email", "description": "Each email has exactly one primary CTA action"},
+        {"name": "has-esp-automation-notes", "description": "Trigger, entry condition, exit condition, and goal tracking documented"},
+        {"name": "has-ab-test-plan", "description": "A/B test recommendations provided for at least one subject line"}
+      ]
+    },
+    {
+      "id": 24,
+      "name": "design-template-landing-page",
+      "prompt": "/design-template landing-page #6366f1 --style bold for Nexus — a developer productivity SaaS",
+      "expected_output": "Complete responsive landing page HTML with hero, features, testimonials, CTA section, and footer using brand color #6366f1 in bold style",
+      "files": [],
+      "assertions": [
+        {"name": "has-css-variables", "description": "Color system defined as CSS custom properties in :root"},
+        {"name": "has-hero-section", "description": "Hero with H1 headline, subtext, and CTA button(s)"},
+        {"name": "has-features-section", "description": "Feature grid or list with icons, titles, and descriptions"},
+        {"name": "has-responsive-layout", "description": "@media queries for mobile (375px) and tablet (768px) breakpoints"},
+        {"name": "has-dark-mode", "description": "@media prefers-color-scheme: dark overrides present"},
+        {"name": "no-lorem-ipsum", "description": "All copy is realistic product language, no Lorem Ipsum"}
+      ]
+    },
+    {
+      "id": 25,
+      "name": "design-template-dashboard",
+      "prompt": "/design-template dashboard --style dark-tech for Pulse Analytics — a real-time monitoring tool",
+      "expected_output": "Admin dashboard HTML with sidebar navigation, KPI stat cards, chart placeholders, and data table in dark-tech style",
+      "files": [],
+      "assertions": [
+        {"name": "has-sidebar-nav", "description": "Fixed sidebar with navigation items and active state"},
+        {"name": "has-kpi-cards", "description": "Stat cards with metric value, label, and trend indicator"},
+        {"name": "has-chart-area", "description": "Chart placeholder areas with labels"},
+        {"name": "has-data-table", "description": "Table with column headers, sample rows, and action elements"},
+        {"name": "dark-tech-style", "description": "Dark background, vibrant accent color, technical aesthetic"},
+        {"name": "has-mobile-responsive", "description": "Sidebar collapses or hides on mobile, single-column layout"}
+      ]
+    },
+    {
+      "id": 26,
+      "name": "edge-case-dark-mode",
+      "prompt": "Build a notification settings page with full dark mode support — the page should look polished in both light and dark themes without any broken contrast or invisible elements",
+      "expected_output": "Settings page with toggle switches, sections, and descriptions that passes WCAG AA contrast in both light and dark modes, using prefers-color-scheme",
+      "files": [],
+      "assertions": [
+        {"name": "has-prefers-color-scheme", "description": "@media (prefers-color-scheme: dark) is used for dark mode"},
+        {"name": "dark-bg-defined", "description": "Dark mode background color explicitly overrides light mode background"},
+        {"name": "dark-text-defined", "description": "Dark mode text color explicitly defined (not invisible on dark bg)"},
+        {"name": "dark-border-defined", "description": "Border colors adjusted for dark mode (not invisible)"},
+        {"name": "has-toggle-switches", "description": "Toggle/checkbox inputs with CSS-styled visual states"},
+        {"name": "has-interactive-states", "description": ":hover and :focus states work in both light and dark modes"}
+      ]
+    },
+    {
+      "id": 27,
+      "name": "edge-case-rtl-layout",
+      "prompt": "Design a product card component that must work correctly in both LTR (English) and RTL (Arabic/Hebrew) layouts. Use CSS logical properties.",
+      "expected_output": "Product card using CSS logical properties (margin-inline-start, padding-inline-end, etc.) and dir='rtl' support, so text and layout flip correctly",
+      "files": [],
+      "assertions": [
+        {"name": "uses-logical-properties", "description": "CSS uses margin-inline-start/end or padding-inline-start/end instead of left/right"},
+        {"name": "has-dir-rtl-demo", "description": "HTML includes dir='rtl' demo or test showing RTL layout"},
+        {"name": "text-aligns-correctly", "description": "Text alignment uses 'start'/'end' not 'left'/'right'"},
+        {"name": "icons-flip-in-rtl", "description": "Directional icons (arrows) use transform: scaleX(-1) or CSS logical values in RTL"},
+        {"name": "no-absolute-positioning-breaks", "description": "Layout doesn't break with dir='rtl' applied to container"},
+        {"name": "has-rtl-comment", "description": "Code includes comment or note explaining the RTL approach used"}
+      ]
+    },
+    {
+      "id": 28,
+      "name": "edge-case-reduced-motion",
+      "prompt": "Build an animated hero section with entrance animations, a rotating logo, and a typing effect — but ensure all animations respect prefers-reduced-motion.",
+      "expected_output": "Hero with CSS animations that are disabled or reduced when prefers-reduced-motion: reduce is detected, without breaking the layout or removing content",
+      "files": [],
+      "assertions": [
+        {"name": "has-animations", "description": "CSS animations or transitions present on hero elements"},
+        {"name": "has-reduced-motion-query", "description": "@media (prefers-reduced-motion: reduce) media query present"},
+        {"name": "animations-disabled-in-query", "description": "animation: none or transition: none applied inside reduced-motion query"},
+        {"name": "layout-intact-without-animation", "description": "Content is still visible and accessible when animations are disabled"},
+        {"name": "typing-effect-handled", "description": "Typing animation shows final text immediately when reduced-motion is preferred"},
+        {"name": "no-autoplaying-video", "description": "Any motion content (video/gif) has controls or is paused by default"}
+      ]
+    },
+    {
+      "id": 29,
+      "name": "workflow-design-to-framework",
+      "prompt": "First, /design a SaaS pricing page with monthly/annual toggle and 3 tiers. Then convert the output to React + Tailwind components using /design-framework react-tailwind.",
+      "expected_output": "First: complete HTML pricing page. Then: React TypeScript components for PricingPage, PricingCard, and BillingToggle with Tailwind classes and proper prop types",
+      "files": [],
+      "assertions": [
+        {"name": "html-phase-complete", "description": "HTML pricing page is produced first before framework conversion"},
+        {"name": "has-react-components", "description": "Final output includes React component files (.tsx)"},
+        {"name": "has-billing-toggle-component", "description": "BillingToggle or similar component handles monthly/annual state"},
+        {"name": "has-pricing-card-props", "description": "PricingCard accepts plan name, price, features array as typed props"},
+        {"name": "tailwind-for-layout", "description": "Grid and flex layout uses Tailwind classes (grid-cols-3, flex, gap-)"},
+        {"name": "state-management-correct", "description": "Toggle state uses React useState, not a global store or context"}
+      ]
+    },
+    {
+      "id": 30,
+      "name": "workflow-brand-to-component-docs",
+      "prompt": "Start with /brand-kit #f59e0b warm, then use /design to build a button component system based on those brand tokens, then run /design-review to audit the result.",
+      "expected_output": "Brand kit tokens → Button component system → Design review report. Each phase's output feeds the next.",
+      "files": [],
+      "assertions": [
+        {"name": "brand-kit-tokens-present", "description": "CSS custom properties or token definitions derived from #f59e0b"},
+        {"name": "button-uses-brand-tokens", "description": "Button component references the brand token variables, not hardcoded colors"},
+        {"name": "has-button-variants", "description": "At least 3 button variants (primary, ghost, text/link)"},
+        {"name": "review-references-brand", "description": "Design review audit checks token usage and brand consistency"},
+        {"name": "review-checks-accessibility", "description": "Review includes contrast ratio check for button text on brand background"},
+        {"name": "workflow-connected", "description": "Each phase explicitly references or uses output from the previous phase"}
+      ]
+    },
+    {
+      "id": 31,
+      "name": "workflow-email-social-launch",
+      "prompt": "Plan a product launch for a new AI writing tool. First use /email-campaign to build a 3-email launch sequence, then /social-campaign for a 2-week social push on LinkedIn and Twitter.",
+      "expected_output": "Coordinated launch plan: email sequence (teaser, launch, follow-up) + social campaign with unified messaging across both channels",
+      "files": [],
+      "assertions": [
+        {"name": "has-3-launch-emails", "description": "Email sequence has teaser, launch day, and follow-up emails"},
+        {"name": "email-subject-lines-written", "description": "All 3 email subject lines and preview texts are written"},
+        {"name": "has-social-campaign-plan", "description": "Social campaign includes platform-specific content calendar"},
+        {"name": "messaging-aligned", "description": "Email and social copy share consistent key messages and value props"},
+        {"name": "has-launch-timing", "description": "Both email and social plans reference a coordinated launch date/window"},
+        {"name": "has-cta-consistency", "description": "Primary CTA (e.g., 'Try free') is consistent across email and social"}
+      ]
     }
   ]
 }
