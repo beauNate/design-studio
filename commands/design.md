@@ -14,6 +14,15 @@ Follow the `design` skill's full orchestration workflow.
 
 ## Process
 
+### 0. Check for Framework Flag
+
+If `$ARGUMENTS` contains `--framework <name>` (e.g., `--framework react-tailwind`, `--framework vue`, `--framework nextjs`):
+- Strip the flag from the task description
+- Run the full design workflow (steps 1–5 below)
+- After Step 5 (Build the Implementation), invoke `/design-framework <framework> <output-file>` to convert the HTML output to the target framework
+
+Recognized frameworks: `react-tailwind`, `react`, `vue`, `vue3`, `nuxt`, `svelte`, `sveltekit`, `nextjs`, `next`, `astro`
+
 ### 1. Load Settings & Analyze the Task
 
 Read `${CLAUDE_PLUGIN_ROOT}/skills/design/settings.local.md` if it exists — apply any configured brand defaults, framework preferences, or quality settings.

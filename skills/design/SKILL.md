@@ -68,6 +68,7 @@ This skill is part of the **design-studio** plugin. For focused workflows, use t
 | `/social-content <task>` | Design social media visual content (posts, stories, reels, carousels) |
 | `/social-campaign <brief>` | Plan a social media campaign with strategy, calendar, and captions |
 | `/social-analytics <type>` | Build social analytics dashboards, reports, or A/B test frameworks |
+| `/design-framework <fw> [file]` | Convert HTML design output to React, Vue, Svelte, Next.js, or Astro components |
 
 ---
 
@@ -91,6 +92,7 @@ This skill is part of the **design-studio** plugin. For focused workflows, use t
 | **Content Designer** | Interface text, microcopy, UX writing, tone of voice, content hierarchy | Any UI with text — labels, error messages, empty states, CTAs, onboarding | `references/content-designer.md` |
 | **Design System Lead** | Tokens, components, theming, dark mode, consistency across outputs | Multi-component work, brand consistency, theming, reusable patterns | `references/design-system-lead.md` |
 | **Motion Designer** | Animations, transitions, micro-interactions, visual storytelling | Interactive UIs, presentations, onboarding, state changes, delight moments | `references/motion-designer.md` |
+| **Framework Specialist** | React/Tailwind, Vue/UnoCSS, Svelte 5, Next.js App Router, Astro patterns | When user specifies `--framework`, framework output requested, or converting HTML to components | `references/framework-specialist.md` |
 
 ### Social Media Specialists
 
@@ -206,6 +208,7 @@ Based on the task, activate only the roles needed. Read their reference files fo
 - The **Design System Lead** joins whenever consistency matters (multi-component work)
 - The **Content Designer** joins whenever there's user-facing text
 - When in doubt, start lean (fewer roles) — you can always pull in additional specialists mid-task if needed
+- **Framework Specialist** activates when: `--framework` flag is present, user says "in React", "as Vue components", "for Next.js", "in Svelte", "Astro component", or `js_framework` is set in settings. Route to `/design-framework` after HTML output.
 - **Social Media** roles activate when the task mentions: "social", "Instagram", "TikTok", "LinkedIn post", "Twitter", "carousel" (for social), "stories", "reel", "campaign", "content calendar", "hashtag", "caption", or "social analytics"
 - The **Social Media Designer** joins any visual social content task
 - The **Social Media Strategist** joins campaign planning and content calendar tasks

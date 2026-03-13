@@ -2,6 +2,27 @@
 
 All notable changes to Design Studio are documented here.
 
+## [2.3.0] — 2026-03-13
+
+Framework-specific code generation — adds `/design-framework` command and Framework Specialist role.
+
+### Added
+
+- **`/design-framework` command**: Convert HTML/CSS design output to idiomatic components for React+Tailwind, Vue 3+UnoCSS, Svelte 5, Next.js App Router, or Astro
+- **`framework-specialist.md` reference** (~220 lines): Complete patterns for each framework — component structure, TypeScript interfaces, token mapping, idiomatic patterns, QA checklist
+- **`--framework` flag in `/design`**: Detects `--framework <name>` in arguments and routes to `/design-framework` after HTML output
+- **Framework keywords in plugin.json**: `react`, `vue`, `svelte`, `nextjs`, `astro`, `tailwind`, `framework`, `tsx`, `typescript`
+- **2 new workflows in README**: Design-to-React and Design-to-Next.js pipelines
+
+### Changed
+
+- plugin.json version bumped to 2.3.0, 20 commands
+- SKILL.md: Framework Specialist added to team table with activation trigger rules
+- README: `/design-framework` in commands table, details section, and workflows
+- Stop hook: includes `/design-framework` in suggestions
+
+---
+
 ## [2.2.0] — 2026-03-13
 
 Social media wing expansion — adds 3 commands, 4 specialist roles, and 3 eval cases.
