@@ -65,6 +65,11 @@ description: >
   user: "How do I use this plugin?" or "What can you do?" or "Tutorial" or "Getting started"
   assistant: Routes to /design-tutorial — interactive guided tour with track selection
   </example>
+
+  <example>
+  user: "Build a complete component library in Figma for our design system"
+  assistant: Routes to /figma-component-library with Figma Creator + Design System Lead + UI Designer
+  </example>
 ---
 
 # Design Team Skill
@@ -103,6 +108,7 @@ This skill is part of the **design-studio** plugin. For focused workflows, use t
 | `/chart-design <description>` | Design a chart or data visualization — selects chart type, applies accessible color palettes, outputs HTML/CSS/JS |
 | `/dashboard-layout <description>` | Build a complete dashboard layout — KPI cards, charts, filter bar, data table, sidebar, responsive |
 | `/design-tutorial [track]` | Interactive guided tour — quick-start, ui, figma, social, email, data-viz, or full (30 min complete tour) |
+| `/figma-component-library <description>` | Generate a complete Figma component library — atoms, molecules, organisms with variants, auto layout, component properties |
 
 ---
 
@@ -284,6 +290,7 @@ Based on the task, activate only the roles needed. Read their reference files fo
 - The **Data Viz Designer** joins any chart or visualization task
 - The **Dashboard Architect** joins when the output is a full dashboard layout (vs. a single chart)
 - **Tutorial** activates when the user says: "tutorial", "getting started", "how do I use", "what can you do", "new user", "first time", "show me", "help me get started" → route directly to `/design-tutorial`
+- **Component Library** activates when the user says: "component library", "figma library", "atoms molecules organisms", "build all components", "generate component library", "create a design system in Figma" → route to `/figma-component-library`
 
 ### Step 4 — Execute the Workflow
 
@@ -427,3 +434,4 @@ Unless the user specifies otherwise:
 | Chart / data visualization | Accessible Chart.js HTML/CSS/JS output | `/chart-design` command |
 | Dashboard layout | Full dashboard with KPI cards, charts, filter bar, tables | `/dashboard-layout` command |
 | Tutorial / onboarding | Interactive guided tour with track selection and real exercises | `/design-tutorial` command |
+| Figma component library | Full atoms/molecules/organisms library with variants and auto layout | `/figma-component-library` command |

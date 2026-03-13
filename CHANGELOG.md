@@ -2,6 +2,23 @@
 
 All notable changes to Design Studio are documented here.
 
+## [3.0.0] — 2026-03-13
+
+Figma Component Library Generator — adds `/figma-component-library` command.
+
+### Added
+
+- **`/figma-component-library` command**: Generate a complete Figma component library from a brand description or design token config. Covers full atomic design hierarchy: 18 atoms (Button, Badge, Input, Checkbox, Toggle, Avatar, Tooltip, Skeleton, etc.), 16 molecules (Card, Alert, Modal, Tabs, Dropdown, Stat Card, Pagination, etc.), 10 organisms (Nav Bar, Sidebar, Data Table, Hero Section, Form Section, Pricing Card, etc.). All components use auto layout, component properties, and variant groups. Produces 5-page Figma structure (Foundation, Atoms, Molecules, Organisms, Templates) with consistent PascalCase layer naming. Supports `--scope`, `--style`, `--config`, and `--framework` flags. MCP fallback outputs HTML component gallery + pasteable Figma Plugin Console code.
+
+### Changed
+
+- plugin.json version bumped to 3.0.0, 27 commands
+- SKILL.md: `/figma-component-library` added to commands table; component library routing example and activation rule added; output formats table updated
+- README: badge 26→27, command in table and details section, "Full design system" workflow entry
+- hooks.json Stop hook: Figma Library section added
+
+---
+
 ## [2.9.0] — 2026-03-13
 
 Interactive Tutorial Mode — adds `/design-tutorial` command with 7 learning tracks.

@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://claude.ai/claude-code)
 [![Roles](https://img.shields.io/badge/Specialist_Roles-9-orange)]()
-[![Commands](https://img.shields.io/badge/Slash_Commands-26-green)]()
+[![Commands](https://img.shields.io/badge/Slash_Commands-27-green)]()
 [![Design Knowledge](https://img.shields.io/badge/Design_Knowledge-8500%2B_lines-ff69b4)]()
 
 **Instead of generic AI design help, Design Studio loads specialized design knowledge for each task — the right expertise activates based on what you're building.**
@@ -221,6 +221,7 @@ _The skill loads only the references your task actually needs_
 | `/chart-design <description>` | Accessible chart or data visualization — selects chart type, applies colorblind-safe palette, outputs HTML/CSS/JS |
 | `/dashboard-layout <description>` | Complete dashboard — KPI cards, chart areas, filter bar, data table, sidebar, responsive |
 | `/design-tutorial [track]` | Interactive guided tour — tracks: quick-start, ui, figma, social, email, data-viz, full |
+| `/figma-component-library <description>` | Complete Figma component library — atoms, molecules, organisms with variants, auto layout, component properties |
 
 <details>
 <summary><b>📖 Command details & examples</b></summary>
@@ -538,6 +539,24 @@ New to Design Studio? Run a guided tour with real exercises:
 
 Each track produces real output — you're not just reading docs, you're running commands. The quick-start track covers the three most common commands (`/design`, `/design-review`, `/design-framework`) in under 5 minutes.
 
+### `/figma-component-library <description>` — Figma Component Library Generator
+
+Generate a complete component library in Figma — atoms → molecules → organisms — from a brand description or design token config:
+
+```
+/figma-component-library SaaS product with blue primary, minimal style
+/figma-component-library e-commerce: product cards, cart, checkout forms
+/figma-component-library --scope atoms   # generate only atom-level components
+/figma-component-library --config design-tokens.json --framework
+```
+
+Generates the full atomic design hierarchy:
+- **Atoms** (18 components): Button, Badge, Input, Checkbox, Toggle, Avatar, Spinner, Tooltip, and more — each with all variants and states
+- **Molecules** (16 components): Card, Form Field, Alert, Modal, Tabs, Dropdown, Stat Card, Empty State, and more
+- **Organisms** (10 components): Nav Bar, Sidebar, Data Table, Hero, Form Section, Pricing Card, and more
+
+All components use auto layout, component properties, and a consistent token foundation. Add `--framework` for companion TypeScript interface specs.
+
 </details>
 
 ---
@@ -565,6 +584,7 @@ Commands chain together. Each command suggests relevant next steps:
 | Data viz pipeline | `/dashboard-layout` → `/chart-design` → `/design-framework` |
 | Full analytics build | `/brand-kit` → `/dashboard-layout` → `/chart-design` → `/design-handoff` |
 | First-time user | `/design-tutorial quick-start` → `/design-tutorial <track>` → `/design <task>` |
+| Full design system | `/brand-kit` → `/figma-component-library` → `/design-handoff` → `/design-framework` |
 
 ---
 
