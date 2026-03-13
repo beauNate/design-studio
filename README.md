@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://claude.ai/claude-code)
 [![Roles](https://img.shields.io/badge/Specialist_Roles-9-orange)]()
-[![Commands](https://img.shields.io/badge/Slash_Commands-25-green)]()
+[![Commands](https://img.shields.io/badge/Slash_Commands-26-green)]()
 [![Design Knowledge](https://img.shields.io/badge/Design_Knowledge-8500%2B_lines-ff69b4)]()
 
 **Instead of generic AI design help, Design Studio loads specialized design knowledge for each task — the right expertise activates based on what you're building.**
@@ -220,6 +220,7 @@ _The skill loads only the references your task actually needs_
 | `/design-template <category>` | Production web template from gallery (landing-page, dashboard, pricing, auth, blog, ecommerce, portfolio, docs, saas, onboarding) |
 | `/chart-design <description>` | Accessible chart or data visualization — selects chart type, applies colorblind-safe palette, outputs HTML/CSS/JS |
 | `/dashboard-layout <description>` | Complete dashboard — KPI cards, chart areas, filter bar, data table, sidebar, responsive |
+| `/design-tutorial [track]` | Interactive guided tour — tracks: quick-start, ui, figma, social, email, data-viz, full |
 
 <details>
 <summary><b>📖 Command details & examples</b></summary>
@@ -520,6 +521,23 @@ Build a complete, production-ready dashboard layout:
 
 Outputs full HTML/CSS with sidebar navigation, 4-column KPI card row, primary + secondary chart areas (with `/chart-design` integration hooks), filter bar with date range selectors, sortable data table with pagination, responsive breakpoints (desktop/tablet/mobile), dark mode, and vanilla JS interactions.
 
+### `/design-tutorial [track]` — Interactive Tutorial
+
+New to Design Studio? Run a guided tour with real exercises:
+
+```
+/design-tutorial                    # shows welcome screen + track selection
+/design-tutorial quick-start        # 5 min: run 3 commands, see what each produces
+/design-tutorial ui                 # 15 min: build component → extract tokens → handoff
+/design-tutorial figma              # 15 min: create in Figma → responsive → prototype
+/design-tutorial social             # 15 min: post design → campaign → analytics
+/design-tutorial email              # 15 min: welcome template → onboarding sequence
+/design-tutorial data-viz           # 15 min: chart design → full dashboard
+/design-tutorial full               # 30 min: complete tour of all 8 wings
+```
+
+Each track produces real output — you're not just reading docs, you're running commands. The quick-start track covers the three most common commands (`/design`, `/design-review`, `/design-framework`) in under 5 minutes.
+
 </details>
 
 ---
@@ -546,6 +564,7 @@ Commands chain together. Each command suggests relevant next steps:
 | Template to Figma | `/design-template` → `/figma-create` → `/component-docs` |
 | Data viz pipeline | `/dashboard-layout` → `/chart-design` → `/design-framework` |
 | Full analytics build | `/brand-kit` → `/dashboard-layout` → `/chart-design` → `/design-handoff` |
+| First-time user | `/design-tutorial quick-start` → `/design-tutorial <track>` → `/design <task>` |
 
 ---
 

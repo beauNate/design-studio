@@ -2,6 +2,23 @@
 
 All notable changes to Design Studio are documented here.
 
+## [2.9.0] — 2026-03-13
+
+Interactive Tutorial Mode — adds `/design-tutorial` command with 7 learning tracks.
+
+### Added
+
+- **`/design-tutorial` command**: Guided tour of Design Studio with 7 tracks — `quick-start` (5 min: 3 commands in action), `ui` (build component → tokens → handoff), `figma` (create → responsive → prototype), `social` (post → campaign → analytics), `email` (template → sequence), `data-viz` (chart → dashboard), `full` (30-min complete tour of all 8 wings). Each track produces real output via live command exercises. Welcome screen on bare invocation with numbered track menu.
+
+### Changed
+
+- plugin.json version bumped to 2.9.0, 26 commands
+- SKILL.md: `/design-tutorial` added to commands table; tutorial trigger rule added to activation rules; tutorial → `/design-tutorial` routing example added; output formats table updated
+- README: badge 25→26, `/design-tutorial` in commands table and details section, "First-time user" workflow entry added
+- hooks.json Stop hook: Tutorial section added with `/design-tutorial` suggestion
+
+---
+
 ## [2.8.0] — 2026-03-13
 
 CI/CD Design Checks — GitHub Action that runs design linting on every PR touching HTML/CSS.

@@ -60,6 +60,11 @@ description: >
   user: "Design an analytics dashboard for a SaaS product"
   assistant: Routes to /dashboard-layout with Dashboard Architect + Data Viz Designer + UI Designer
   </example>
+
+  <example>
+  user: "How do I use this plugin?" or "What can you do?" or "Tutorial" or "Getting started"
+  assistant: Routes to /design-tutorial — interactive guided tour with track selection
+  </example>
 ---
 
 # Design Team Skill
@@ -97,6 +102,7 @@ This skill is part of the **design-studio** plugin. For focused workflows, use t
 | `/design-template <category>` | Production-ready web template from gallery: landing-page, dashboard, pricing, auth, blog, ecommerce, portfolio, docs, saas, onboarding |
 | `/chart-design <description>` | Design a chart or data visualization — selects chart type, applies accessible color palettes, outputs HTML/CSS/JS |
 | `/dashboard-layout <description>` | Build a complete dashboard layout — KPI cards, charts, filter bar, data table, sidebar, responsive |
+| `/design-tutorial [track]` | Interactive guided tour — quick-start, ui, figma, social, email, data-viz, or full (30 min complete tour) |
 
 ---
 
@@ -277,6 +283,7 @@ Based on the task, activate only the roles needed. Read their reference files fo
 - **Data Visualization** roles activate when the task mentions: "chart", "graph", "data viz", "visualization", "bar chart", "line chart", "scatter plot", "pie chart", "donut chart", "histogram", "heatmap", "sparkline", "KPI", "dashboard", "analytics dashboard", "admin panel", "data table", "metrics", "monitoring", or "reporting dashboard"
 - The **Data Viz Designer** joins any chart or visualization task
 - The **Dashboard Architect** joins when the output is a full dashboard layout (vs. a single chart)
+- **Tutorial** activates when the user says: "tutorial", "getting started", "how do I use", "what can you do", "new user", "first time", "show me", "help me get started" → route directly to `/design-tutorial`
 
 ### Step 4 — Execute the Workflow
 
@@ -419,3 +426,4 @@ Unless the user specifies otherwise:
 | Social analytics dashboard | HTML dashboard with Chart.js + KPI cards | `/social-analytics` command |
 | Chart / data visualization | Accessible Chart.js HTML/CSS/JS output | `/chart-design` command |
 | Dashboard layout | Full dashboard with KPI cards, charts, filter bar, tables | `/dashboard-layout` command |
+| Tutorial / onboarding | Interactive guided tour with track selection and real exercises | `/design-tutorial` command |
