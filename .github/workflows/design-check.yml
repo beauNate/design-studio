@@ -1,0 +1,126 @@
+name: Design Quality Check
+
+on:
+  pull_request:
+    paths:
+      - '**/*.html'
+      - '**/*.css'
+      - '**/*.scss'
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.jsx'
+      - '**/*.vue'
+      - '**/*.svelte'
+
+jobs:
+  design-lint:
+    name: Design Lint
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            **/*.html
+            **/*.css
+            **/*.scss
+
+      - name: Setup Node.js
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Design Lint
+        if: steps.changed-files.outputs.any_changed == 'true'
+        id: lint
+        # Pass changed files via env var to avoid command injection from output values
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          node scripts/design-lint.js
+        continue-on-error: true
+
+      - name: Post PR Comment
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync('design-lint-report.json')
+              ? JSON.parse(fs.readFileSync('design-lint-report.json', 'utf-8'))
+              : null;
+
+            if (!report) return;
+
+            const { score, issues, passed, failed, warnings } = report;
+            const emoji = score >= 90 ? '✅' : score >= 70 ? '⚠️' : '❌';
+            const scoreColor = score >= 90 ? 'brightgreen' : score >= 70 ? 'yellow' : 'red';
+
+            let body = `## ${emoji} Design Quality Check — Score: ${score}/100\n\n`;
+            body += `![score](https://img.shields.io/badge/Design_Score-${score}%2F100-${scoreColor})\n\n`;
+
+            if (issues.length === 0) {
+              body += `All design checks passed.\n`;
+            } else {
+              body += `| Severity | File | Check | Issue |\n`;
+              body += `|----------|------|-------|-------|\n`;
+              for (const issue of issues) {
+                const sev = issue.severity === 'error' ? '🔴 Error' : '🟡 Warning';
+                const safeFile = issue.file.replace(/[<>&"]/g, c => `&#${c.charCodeAt(0)};`);
+                const safeMsg = issue.message.replace(/[<>&"]/g, c => `&#${c.charCodeAt(0)};`);
+                body += `| ${sev} | \`${safeFile}\` | ${issue.check} | ${safeMsg} |\n`;
+              }
+              body += `\n`;
+            }
+
+            body += `<details><summary>Summary</summary>\n\n`;
+            body += `- ✅ **${passed}** checks passed\n`;
+            body += `- ⚠️ **${warnings}** warnings\n`;
+            body += `- ❌ **${failed}** errors\n`;
+            body += `\n*Run locally: \`node scripts/design-lint.js\`*\n</details>\n`;
+            body += `\n> Powered by [Design Studio](https://github.com/Adityaraj0421/design-studio) · [Configure](.design-lint.json)`;
+
+            // Find existing bot comment to update rather than creating duplicates
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('Design Quality Check')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Fail on critical issues
+        if: steps.lint.outcome == 'failure'
+        run: |
+          echo "Design lint found critical issues. See PR comment for details."
+          exit 1

@@ -549,6 +549,39 @@ Commands chain together. Each command suggests relevant next steps:
 
 ---
 
+## 🚦 CI/CD Design Checks
+
+Add automatic design quality checks to every PR. The included GitHub Action runs when HTML/CSS files change, posts a score card as a PR comment, and fails CI if quality drops below the threshold.
+
+**Setup:** Copy the workflow to your repo:
+```bash
+cp .github/workflows/design-check.yml /your-repo/.github/workflows/
+cp scripts/design-lint.js /your-repo/scripts/
+```
+
+**PR comment example:**
+```
+✅ Design Quality Check — Score: 94/100
+
+| Severity | File | Check | Issue |
+|----------|------|-------|-------|
+| 🟡 Warning | src/dashboard.html | CSS token compliance | 7 hardcoded hex colors found |
+```
+
+**Local run:**
+```bash
+node scripts/design-lint.js src/**/*.html src/**/*.css
+```
+
+**Configure** via `.design-lint.json` in your repo root (copy from `.design-lint.json.example`):
+```json
+{ "failThreshold": 80, "ignorePatterns": ["dist/**"] }
+```
+
+**Score formula:** `100 − (errors × 10) − (warnings × 3)`
+
+---
+
 ## ⚙️ How It Works
 
 ```mermaid

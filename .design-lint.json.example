@@ -1,0 +1,12 @@
+{
+  "failThreshold": 70,
+  "warnOnTokens": true,
+  "checkContrast": true,
+  "checkSemantic": true,
+  "checkResponsive": true,
+  "ignorePatterns": [
+    "dist/**",
+    "*.min.html",
+    "vendor/**"
+  ]
+}

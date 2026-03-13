@@ -2,6 +2,23 @@
 
 All notable changes to Design Studio are documented here.
 
+## [2.8.0] — 2026-03-13
+
+CI/CD Design Checks — GitHub Action that runs design linting on every PR touching HTML/CSS.
+
+### Added
+
+- **`.github/workflows/design-check.yml`**: GitHub Actions workflow triggers on PRs modifying HTML/CSS/SCSS. Runs design lint, posts score badge + issue table as PR comment (updates on re-run), fails CI if score is below threshold. Changed files passed via `CHANGED_FILES` env var (not shell interpolation) to prevent command injection.
+- **`scripts/design-lint.js`**: Portable Node.js linter. Works in CI (`CHANGED_FILES` env var) and locally (`node scripts/design-lint.js <files>`). 10 checks: HTML lang, img alt, semantic HTML, button-vs-div, viewport meta, form labels, hardcoded hex colors, fixed pixel widths, inline styles, missing breakpoints. Outputs `design-lint-report.json` with score (0–100), issue list, pass/fail/warning counts. Score = 100 − (errors × 10) − (warnings × 3). Default fail threshold: 70.
+- **`.design-lint.json.example`**: Configuration reference — `failThreshold`, check toggles, `ignorePatterns` for dist/vendor files.
+
+### Changed
+
+- plugin.json version bumped to 2.8.0
+- README: CI/CD section added with badge usage and local run instructions
+
+---
+
 ## [2.7.0] — 2026-03-13
 
 Data Visualization Wing — adds `/chart-design`, `/dashboard-layout`, and 2 specialist roles.
