@@ -5,7 +5,7 @@ Thanks for your interest in contributing! This guide explains how to add new rol
 ## Plugin Architecture
 
 ```
-design-studio/
+naksha/
 ├── .claude-plugin/plugin.json    # Plugin manifest (name, version, description)
 ├── skills/design/
 │   ├── SKILL.md                  # Orchestrator — routes tasks to roles
@@ -136,7 +136,7 @@ done
 After making changes, sync to the plugin install directory:
 
 ```bash
-cp -r . ~/.claude/plugins/design-studio/
+cp -r . ~/.claude/plugins/naksha/
 ```
 
 Then restart Claude Code to reload the plugin.
