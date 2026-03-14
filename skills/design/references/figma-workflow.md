@@ -266,7 +266,7 @@ A consistent naming system makes components findable, understandable, and mainta
 
 **Naming for search discoverability:**
 - Use terms developers and designers both use, not internal nicknames
-- Don't abbreviate ("btn" not "Button", "nav" not "Navigation") — full words search better
+- Don't abbreviate ("Button" not "btn", "Navigation" not "nav") — full words search better
 - Use the same terms as your design system documentation
 
 **Deprecated components:**

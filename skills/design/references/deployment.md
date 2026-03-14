@@ -7,6 +7,8 @@ Guidance for deploying designed sites and applications via Firebase Hosting, inc
 2. [Firebase Hosting Setup](#firebase-hosting-setup)
 3. [Optimization](#optimization)
 4. [Production Checklist](#production-checklist)
+5. [Advanced Patterns](#advanced-patterns)
+6. [Full Coverage](#full-coverage)
 
 ---
 
@@ -196,3 +198,226 @@ Before deploying a design to production:
 - [ ] Page is keyboard navigable
 - [ ] Screen reader announces content correctly
 - [ ] Focus order is logical
+
+---
+
+## Advanced Patterns
+
+### LCP Optimisation
+
+LCP (Largest Contentful Paint) measures when the largest visible element loads. Target: < 2.5s.
+
+**Identify the LCP element first:**
+```javascript
+new PerformanceObserver((list) => {
+  for (const entry of list.getEntries()) {
+    console.log('LCP element:', entry.element, entry.startTime);
+  }
+}).observe({type: 'largest-contentful-paint', buffered: true});
+```
+Usually: hero image, H1, or above-the-fold card image.
+
+**Optimisation techniques by cause:**
+| Cause | Fix |
+|---|---|
+| Large unoptimised image | WebP/AVIF, correct dimensions, `srcset` for responsive |
+| Image not preloaded | `<link rel="preload" as="image" href="hero.webp">` |
+| Render-blocking resources above fold | Move CSS inline for above-fold, defer non-critical JS |
+| Slow server response | CDN, edge caching, server-side render above-fold content |
+| Client-rendered LCP element | SSR or SSG the above-fold content — don't wait for JS hydration |
+
+---
+
+### CLS Optimisation
+
+CLS (Cumulative Layout Shift) measures visual stability. Target: < 0.1.
+
+**Reserve space for images — always:**
+```html
+<img src="hero.jpg" width="1200" height="600" alt="...">
+<!-- or -->
+<img style="aspect-ratio: 2/1" src="hero.jpg" alt="...">
+```
+
+**Font-caused CLS — use size-adjust:**
+```css
+@font-face {
+  font-family: 'CustomFont';
+  font-display: swap;
+}
+/* Fallback metrics matching — reduces FOUT layout shift */
+@font-face {
+  font-family: 'CustomFontFallback';
+  src: local('Arial');
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+  size-adjust: 107%;
+}
+```
+
+**Never insert content above existing content** after load — ads, banners, cookie notices that push content down are the #1 source of CLS. Use reserved space or overlay patterns instead.
+
+---
+
+### INP Optimisation
+
+INP (Interaction to Next Paint) measures responsiveness. Target: < 200ms.
+
+**The root cause:** Long tasks blocking the main thread. Any task >50ms can cause a bad INP.
+
+**Break up long tasks — yield to the main thread:**
+```javascript
+// Instead of one long synchronous operation:
+async function processItems(items) {
+  for (let i = 0; i < items.length; i++) {
+    processItem(items[i]);
+    // Yield every 50 items to let the browser respond to input
+    if (i % 50 === 0) {
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+  }
+}
+```
+
+**Defer non-critical JS:**
+```html
+<script src="analytics.js" defer></script>
+<script src="chat-widget.js" defer></script>
+```
+
+**Use web workers for heavy computation** (JSON parsing, image processing, search indexing) — moves work off the main thread entirely.
+
+**Optimise event handler duration:**
+- Event handler itself should be fast (<50ms)
+- Move heavy work to `requestAnimationFrame` or `requestIdleCallback`
+- Debounce/throttle: search inputs (300ms), scroll handlers (16ms), resize (150ms)
+
+---
+
+### Font Loading Strategy
+
+**The order of operations:**
+```html
+<!-- 1. Preconnect to font CDN (DNS + TLS ahead of time) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- 2. Preload the critical weight (the one used above the fold) -->
+<link rel="preload" as="font" href="/fonts/inter-400.woff2" crossorigin>
+
+<!-- 3. Use font-display: swap with fallback metrics -->
+```
+
+**Variable fonts over multiple weights:** One file vs. 4–6 files. Significant HTTP request reduction.
+```css
+/* Instead of: inter-400.woff2, inter-500.woff2, inter-700.woff2 */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+```
+
+**Self-hosting vs. CDN:**
+- Self-hosting: better privacy (no third-party requests), controlled caching, no GDPR concerns
+- CDN (Google Fonts): easier setup, but adds DNS lookup + potential GDPR issue in EU
+- **For performance-critical sites:** self-host with preload
+
+---
+
+### Bundle Splitting Decisions
+
+**Always split by route:**
+```javascript
+// Next.js — automatic. React Router:
+const Dashboard = React.lazy(() => import('./Dashboard'));
+const Settings = React.lazy(() => import('./Settings'));
+```
+
+**Component-level splitting (only for large components not needed on initial load):**
+- Rich text editors (ProseMirror, Tiptap): ~200kb+ — always lazy load
+- Chart libraries (Recharts, Chart.js): ~100kb+ — lazy load unless chart is above fold
+- Date pickers, complex form components — evaluate size with `webpack-bundle-analyzer`
+
+**Vendor chunk strategy:**
+- Keep framework (React, Vue) in its own chunk — long-lived cache
+- Group stable dependencies (lodash, date-fns) together
+- Don't split everything — too many small chunks = too many HTTP requests
+
+**What NOT to split:**
+- Anything used above the fold (increases time to interactive)
+- Small utilities (<10kb) — the request overhead outweighs the savings
+- Code used on every page — no benefit to lazy loading universal code
+
+---
+
+## Full Coverage
+
+### Performance Budget Framework
+
+Set budgets before building, not after:
+
+| Metric | Good | Needs work | Poor |
+|---|---|---|---|
+| LCP | < 2.5s | 2.5–4s | > 4s |
+| CLS | < 0.1 | 0.1–0.25 | > 0.25 |
+| INP | < 200ms | 200–500ms | > 500ms |
+| Total JS (gzipped) | < 200kb | 200–400kb | > 400kb |
+| Total page weight | < 1MB | 1–3MB | > 3MB |
+
+**Enforcing budgets in CI:**
+```javascript
+// next.config.js — fail build if bundle exceeds budget
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+// Or use bundlesize / size-limit package:
+// "size-limit": [{ "path": ".next/static/chunks/main.js", "limit": "100 kB" }]
+```
+
+**What to do when you're over budget:**
+1. Identify the largest contributors: `ANALYZE=true npm run build`
+2. Are any large dependencies replaceable? (`moment.js` → `date-fns`, `lodash` → native)
+3. Is anything being imported that isn't used? (tree-shaking, named imports)
+4. Can any large component be lazy-loaded?
+
+---
+
+### Post-Deploy Monitoring Checklist
+
+Run this after every production deploy:
+
+- [ ] **Core Web Vitals (field data):** Check Google Search Console → Core Web Vitals (next day for fresh data)
+- [ ] **Error rate baseline:** Compare error rate for 24h before vs. 24h after deploy
+- [ ] **API response times:** P50, P95, P99 for key endpoints — look for regressions
+- [ ] **404 check:** Any linked pages returning 404? (broken by redirect or rename)
+- [ ] **Accessibility regression:** Run axe or Lighthouse accessibility audit on 3 key pages
+- [ ] **Mobile check:** Test on a real device or BrowserStack, not just resized desktop
+- [ ] **Monitoring alert thresholds:** LCP alert if > 4s, error rate alert if > 2%, set in your monitoring tool
+
+---
+
+### A/B Testing Infrastructure
+
+**Three splitting methods:**
+| Method | How it works | CLS risk | Best for |
+|---|---|---|---|
+| Client-side | JS loads, decides variant, renders | High (flash of wrong variant) | Quick experiments, low-traffic pages |
+| Server-side | Server decides variant before HTML | None | High-traffic, conversion-critical pages |
+| Edge (CDN) | Edge function decides before response | None | Best performance, requires edge-compatible infra |
+
+**Flicker prevention for client-side:**
+```javascript
+// Anti-flicker snippet — hide body until variant is determined
+document.documentElement.style.opacity = '0';
+// (After variant assigned and applied:)
+document.documentElement.style.opacity = '1';
+```
+
+**Holdout groups:** Keep 5–10% of users out of all experiments. This measures the cumulative effect of all your tests combined — your "total experimentation lift."
+
+**Variant pollution prevention:** Use the same user → same variant mapping across sessions. A user who saw variant B on Monday should see variant B on Thursday. Inconsistency contaminates results.
+
+---
