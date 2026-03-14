@@ -1,16 +1,20 @@
 <div align="center">
 
-<img src="assets/social-preview.svg" alt="Design Studio — Structured design knowledge for Claude Code" width="640">
+<svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="8" fill="#E8633A"/><circle cx="26" cy="10" r="8" fill="#E8633A" fill-opacity="0.12"/><circle cx="42" cy="10" r="8" fill="#E8633A"/><circle cx="10" cy="26" r="8" fill="#E8633A" fill-opacity="0.12"/><circle cx="26" cy="26" r="8" fill="#E8633A" fill-opacity="0.45"/><circle cx="42" cy="26" r="8" fill="#E8633A" fill-opacity="0.12"/><circle cx="10" cy="42" r="8" fill="#E8633A"/><circle cx="26" cy="42" r="8" fill="#E8633A" fill-opacity="0.12"/><circle cx="42" cy="42" r="8" fill="#E8633A"/></svg>
 
-<br><br>
+# naksha
+
+**Your agency's design brain. Always on, always yours.**
+
+*The Naksha design team, inside your terminal — 13 specialist roles activate automatically based on what you're building. Also available as a web workspace at [naksha.ai](https://naksha.ai).*
+
+<br>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://claude.ai/claude-code)
-[![Roles](https://img.shields.io/badge/Specialist_Roles-9-orange)]()
+[![Roles](https://img.shields.io/badge/Specialist_Roles-13-orange)]()
 [![Commands](https://img.shields.io/badge/Slash_Commands-27-green)]()
-[![Design Knowledge](https://img.shields.io/badge/Design_Knowledge-8500%2B_lines-ff69b4)]()
-
-**Instead of generic AI design help, Design Studio loads specialized design knowledge for each task — the right expertise activates based on what you're building.**
+[![Design Knowledge](https://img.shields.io/badge/Design_Knowledge-9500%2B_lines-E8633A)]()
 
 [Quick Start](#-quick-start) · [Commands](#-commands) · [The Team](#-the-team) · [How It Works](#-how-it-works) · [Changelog](CHANGELOG.md)
 
@@ -21,7 +25,7 @@
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/Adityaraj0421/design-studio.git ~/.claude/plugins/design-studio
+git clone https://github.com/Adityaraj0421/naksha-studio.git ~/.claude/plugins/naksha
 ```
 
 Then try:
@@ -712,7 +716,7 @@ Settings marked `"auto"` or left empty defer to auto-detection. The Design Manag
 ## 📁 What's Inside
 
 ```
-design-studio/
+naksha/
 ├── .claude-plugin/plugin.json          # Plugin manifest (v2.1.1)
 ├── skills/design/
 │   ├── SKILL.md                        # Design Manager orchestration
@@ -803,7 +807,7 @@ All defaults adapt when the plugin detects your project uses a different stack.
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/Adityaraj0421/design-studio.git ~/.claude/plugins/design-studio
+git clone https://github.com/Adityaraj0421/naksha-studio.git ~/.claude/plugins/naksha
 ```
 
 Restart Claude Code to load the plugin.
@@ -821,6 +825,6 @@ Restart Claude Code to load the plugin.
 
 **Built with Claude Code**
 
-[Report Issues](https://github.com/Adityaraj0421/design-studio/issues) · [Changelog](CHANGELOG.md) · [MIT License](LICENSE)
+[Report Issues](https://github.com/Adityaraj0421/naksha-studio/issues) · [Changelog](CHANGELOG.md) · [MIT License](LICENSE)
 
 </div>
